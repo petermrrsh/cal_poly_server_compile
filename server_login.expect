@@ -1,0 +1,43 @@
+#!/usr/bin/expect
+
+set timeout -1
+set opt [lindex $argv 0]
+set server   [lindex $argv 1]
+set user [lindex $argv 2]
+set pwd [lindex $argv 3]
+
+
+if { $opt == "-cmd" } {
+
+    set commands [lrange $argv 4 [llength $argv]]
+    spawn ssh -o LogLevel=QUIET -t $user@$server $commands 1> output 2> error
+
+    expect {
+        yes/no       {send "yes\r" ; exp_continue}
+        *?assword    {send "$pwd\r" ; exp_continue}
+        eof
+    }
+
+} elseif { $opt == "-to" } {
+
+    set filename [lindex $argv 4]
+    set dst_path [lindex $argv 5]
+    spawn scp $filename $user@$server:$dst_path
+	
+	expect {
+		yes/no     {send "yes\r" ; exp_continue}
+		*?assword  {send "$pwd\r" ; exp_continue}    
+		eof
+	}
+} elseif { $opt == "-from" } {
+
+    set filename [lindex $argv 4]
+    set dst_path [lindex $argv 5]
+    spawn scp $user@$server:$filename $dst_path
+	
+	expect {
+		yes/no     {send "yes\r" ; exp_continue}
+		*?assword  {send "$pwd\r" ; exp_continue}    
+		eof
+	}
+}
