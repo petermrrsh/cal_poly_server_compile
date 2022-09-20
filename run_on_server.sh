@@ -12,7 +12,7 @@ print_usage() {
     echo '* '
 }
 
-if (( $# != 2 ))
+if (( $# != 1 ))
 then
     print_usage
     exit 1
