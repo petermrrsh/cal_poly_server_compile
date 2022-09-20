@@ -20,14 +20,17 @@ fi
 
 c_file=$1
 
+# server_cmd <command to run on the server...>
 server_cmd() {
     ./server_login.expect -cmd $server $user $password $*
 }
 
+# server_scp_to <local file> <server destination path>
 server_scp_to() {
     ./server_login.expect -to $server $user $password $1 $2
 }
 
+# server_scp_to <server file> <local destination path>
 server_scp_from() {
     ./server_login.expect -from $server $user $password $1 $2
 }

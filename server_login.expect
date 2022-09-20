@@ -1,5 +1,6 @@
 #!/usr/bin/expect
 
+# timeout disabled, could wait forever for a return
 set timeout -1
 set opt [lindex $argv 0]
 set server   [lindex $argv 1]
