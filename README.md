@@ -4,7 +4,7 @@ Works on mac, might need to be tweaked for windows/linux
 
 ## Usage
 
-Edit 'user' and 'password' in run_on_server.sh
+Edit 'user' and 'password' in run_on_server.sh to your cal poly username and password (don't commit this)
 
 $ chmod +x run_on_server.sh
 
