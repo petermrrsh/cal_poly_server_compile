@@ -11,7 +11,7 @@ set pwd [lindex $argv 3]
 if { $opt == "-cmd" } {
 
     set commands [lrange $argv 4 [llength $argv]]
-    spawn ssh -o LogLevel=QUIET -t $user@$server $commands 1> output 2> error
+    spawn ssh -o LogLevel=QUIET -t $user@$server $commands
 
     expect {
         yes/no       {send "yes\r" ; exp_continue}
